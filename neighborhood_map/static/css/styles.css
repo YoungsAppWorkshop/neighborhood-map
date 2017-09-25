@@ -1,0 +1,134 @@
+html,
+body,
+main {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+}
+/*
+* Sidebar
+*/
+.sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 270px;
+    background-color: #000;
+    display: flex;
+    flex-flow: column;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.sidebar--toggled {
+    left: -270px;
+}
+
+.sidebar__brand {
+    flex: 0 1 auto;
+}
+
+.sidebar__brand > h1 {
+    text-indent: 10px;
+    height: 65px;
+    font-size: 20px;
+    line-height: 60px;
+    color: #ccc;
+}
+
+.sidebar__form {
+    flex: 0 1 auto;
+}
+
+.sidebar__form__filter {
+    width: 200px !important;
+}
+
+.sidebar__list__container {
+    flex: 1 1 auto;
+    overflow-y: scroll;
+}
+
+.sidebar__list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar__list__item {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar__list__item a {
+    display: block;
+    text-decoration: none;
+    color: #999;
+}
+
+.sidebar__list__item a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar__footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    font-size: 11px;
+    color: #aaa;
+}
+
+.copyright {
+    color: #777;
+}
+
+/*
+* Main
+*/
+#sidebar-toggle-btn {
+    width: 48px !important;
+}
+
+#content-wrapper {
+    margin-left: 270px;
+    display: flex;
+    flex-flow: column;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#content-wrapper.toggled {
+    margin-left: 0;
+}
+
+.header {
+    flex: 0 1 auto;
+}
+
+#google-map {
+    flex: 1 1 auto;
+}
+
+@media screen and (max-width: 575px) {
+    #content-wrapper.toggled {
+        -ms-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    #content-wrapper {
+        margin-left: 0;
+        -ms-transform: translateX(270px);
+        -webkit-transform: translateX(270px);
+        transform: translateX(270px);
+    }
+}

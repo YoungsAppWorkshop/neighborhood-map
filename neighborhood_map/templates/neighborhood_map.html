@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FSND | Neighborhood Map Project</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar__brand">
+            <h1>Neighborhood Map</h1>
+        </div>
+
+        <form class="sidebar__form form-inline mt-2 mb-4 ml-2">
+            <input class="form-control mr-2 sidebar__form__filter" type="text" placeholder="Filter By...">
+            <button class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-filter" aria-hidden="true"></i></button>
+        </form>
+
+        <div class="sidebar__list__container">
+            <ul class="sidebar__list" data-bind="foreach: venues">
+                <li class="sidebar__list__item">
+                    <a href="#" data-bind="text: name"></a>
+                </li>
+            </ul>
+        </div>
+
+        <footer class="sidebar__footer pt-2 pr-3">
+            <p class="ml-auto mb-0 text-right"><span class="copyright">Copyright 2017</span> &nbsp; Young Jung</p>
+            <p class="mb-1 text-right">Powered by <a href="https://foursquare.com/">Foursquare</a></p>
+        </footer>
+    </aside>
+
+    <main id="content-wrapper" class="container-fluid px-0">
+
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse header">
+
+            <button class="navbar-toggler navbar-toggler-right my-2 my-sm-0" type="button" data-toggle="collapse" data-target="#collapse-menu" aria-controls="collapse-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <button id="sidebar-toggle-btn" class="btn btn-danger my-2 my-sm-0"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+
+            <div class="collapse navbar-collapse" id="collapse-menu">
+                <form class="form-inline my-2 my-lg-0 ml-auto">
+                    <input class="form-control mr-sm-2" type="text" placeholder="City" data-bind="value: city">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Country" data-bind="value: country">
+                    <select class="form-control mr-sm-2" data-bind="options: availableSections, value:section"></select>
+                </form>
+
+                <button class="btn btn-outline-info my-2 my-sm-0" data-bind="click: searchVenues">Search</button>
+            </div>
+        </nav>
+
+        <div id="google-map"></div>
+    </main>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <!-- Bootstrap core JavaScript -->
+
+    <!-- Knockout.js JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <!-- Knockout.js JavaScript -->
+
+    <script src="{{url_for('static', filename='js/ui.js')}}"></script>
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+
+    <!-- Google Maps API JavaScript -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAP_API_KEY}}&v=3&callback=initMap" async defer></script>
+    <!-- Google Maps API JavaScript -->
+
+</body>
+
+</html>

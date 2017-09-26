@@ -7,6 +7,7 @@ main {
 body {
     overflow: hidden;
 }
+
 /*
 * Sidebar
 */
@@ -15,10 +16,12 @@ body {
     top: 0;
     bottom: 0;
     left: 0;
-    width: 270px;
-    background-color: #000;
     display: flex;
     flex-flow: column;
+    width: 270px;
+    background-color: #000;
+    color: #999;
+    text-indent: 20px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -29,10 +32,6 @@ body {
     left: -270px;
 }
 
-.sidebar__brand {
-    flex: 0 1 auto;
-}
-
 .sidebar__brand > h1 {
     text-indent: 10px;
     height: 65px;
@@ -41,47 +40,42 @@ body {
     color: #ccc;
 }
 
-.sidebar__form {
-    flex: 0 1 auto;
-}
-
 .sidebar__form__filter {
     width: 200px !important;
 }
 
 .sidebar__list__container {
-    flex: 1 1 auto;
+    flex-grow: 1;
     overflow-y: scroll;
 }
 
 .sidebar__list {
     list-style: none;
     padding-left: 0;
+    cursor: pointer;
 }
 
-.sidebar__list__item {
-    text-indent: 20px;
-    line-height: 40px;
-}
-
-.sidebar__list__item a {
+.sidebar__list__item > p {
     display: block;
-    text-decoration: none;
-    color: #999;
+    height: 24px;
+    overflow: hidden;
 }
 
-.sidebar__list__item a:hover {
-    text-decoration: none;
+.sidebar__list__item:hover {
     color: #fff;
     background: rgba(255, 255, 255, 0.2);
 }
 
+.sidebar__list__waiting > img {
+    padding-top: 50px;
+    padding-left: 100px;
+}
+
+.sidebar__list__info > p {
+    text-indent: 0;
+}
+
 .sidebar__footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #000;
     font-size: 11px;
     color: #aaa;
 }

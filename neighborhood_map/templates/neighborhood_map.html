@@ -11,6 +11,11 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- Animate.css -->
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
@@ -23,17 +28,29 @@
             <h1>Neighborhood Map</h1>
         </div>
 
-        <form class="sidebar__form form-inline mt-2 mb-4 ml-2">
-            <input class="form-control mr-2 sidebar__form__filter" type="text" placeholder="Filter By...">
-            <button class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-filter" aria-hidden="true"></i></button>
-        </form>
+        <div class="sidebar__form__container pb-3">
+            <form class="sidebar__form form-inline ml-2">
+                <input class="form-control mr-2 sidebar__form__filter" type="text" placeholder="Filter By...">
+                <button class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-filter" aria-hidden="true"></i></button>
+            </form>
+        </div>
 
         <div class="sidebar__list__container">
             <ul class="sidebar__list" data-bind="foreach: venues">
-                <li class="sidebar__list__item">
-                    <a href="#" data-bind="text: name"></a>
+                <li class="sidebar__list__item animated fadeInRight py-2">
+                    <p class="my-0" data-bind="text: formattedName"></p>
                 </li>
             </ul>
+
+            <div class="sidebar__list__waiting animated fadeIn" data-bind="visible: $root.isWaiting">
+                <p>Receiving Data ... </p>
+                <img src="{{url_for('static', filename='img/loading.gif')}}" alt="Loading Data...">
+            </div>
+
+            <div class="sidebar__list__info animated fadeIn" data-bind="visible: $root.isInfo">
+                <h5 data-bind="text: $root.infoTitle"></h5>
+                <p data-bind="text: $root.infoMessage" class="mx-3"></p>
+            </div>
         </div>
 
         <footer class="sidebar__footer pt-2 pr-3">

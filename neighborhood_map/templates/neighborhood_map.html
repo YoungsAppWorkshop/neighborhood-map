@@ -30,13 +30,13 @@
 
         <div class="sidebar__form__container pb-3">
             <form class="sidebar__form form-inline ml-2">
-                <input class="form-control mr-2 sidebar__form__filter" type="text" placeholder="Filter By...">
-                <button class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-filter" aria-hidden="true"></i></button>
+                <input class="form-control mr-2 sidebar__form__filter" type="text" placeholder="Filter By..." data-bind="value: filter">
+                <button id="sidebar-filter-btn" class="btn btn-success my-2 my-sm-0" data-bind="click: toggleFilter"><i class="fa fa-filter" aria-hidden="true"></i></button>
             </form>
         </div>
 
         <div class="sidebar__list__container">
-            <ul class="sidebar__list" data-bind="foreach: venues">
+            <ul class="sidebar__list" data-bind="foreach: filteredVenues">
                 <li class="sidebar__list__item animated fadeInRight py-2" data-bind="css: {selected: $data == $root.chosenVenue() }, click: $root.chooseVenue">
                     <p class="my-0" data-bind="text: formattedName"></p>
                 </li>

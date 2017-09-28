@@ -106,6 +106,7 @@ let ViewModel = function() {
     self.filter = ko.observable('');
     self.venues = ko.observableArray([]);
     self.chosenVenue = ko.observable();
+    self.isFiltered = ko.observable(false);
     self.isWaiting = ko.observable(false);
     self.isInfo = ko.observable(false);
     self.infoTitle = ko.observable('');
@@ -130,6 +131,7 @@ let ViewModel = function() {
                 // console.log(response.results.location);
                 googleMap.center = response.results.location;
                 googleMap.map.setCenter(response.results.location);
+                googleMap.bounds = new google.maps.LatLngBounds();
                 const venueItems = response.results.items;
                 if (venueItems.length === 0) {
                     self.displayInfo('No result', "Couldn't find " + self.section() + " in this location.");
@@ -167,11 +169,44 @@ let ViewModel = function() {
         self.venues([]);
     };
 
+    self.filteredVenues = ko.computed(function() {
+        switch (self.isFiltered()) {
+        case true:
+            return self.venues().filter(function(venue){
+                const isFiltered = venue.name.toLowerCase().includes(self.filter().toLowerCase());
+                if (isFiltered) {
+                    venue.marker.setMap(googleMap.map);
+                } else {
+                    venue.marker.setMap(null);
+                }
+                return venue.name.toLowerCase().includes(self.filter().toLowerCase());
+            });
+        case false:
+            self.venues().forEach(function(venue) {
+                venue.marker.setMap(googleMap.map);
+            });
+            return self.venues();
+        }
+
+    });
+
     self.displayInfo = function(title, message) {
         self.infoTitle(title);
         self.infoMessage(message);
         self.isWaiting(false);
         self.isInfo(true);
+    };
+
+    self.toggleFilter = function() {
+        self.isFiltered(!self.isFiltered());
+        if (self.isFiltered()) {
+            $('#sidebar-filter-btn').removeClass('btn-success').addClass('btn-danger');
+            $('#sidebar-filter-btn').find('i').removeClass('fa-filter').addClass('fa-ban');
+        } else {
+            self.filter('');
+            $('#sidebar-filter-btn').removeClass('btn-danger').addClass('btn-success');
+            $('#sidebar-filter-btn').find('i').removeClass('fa-ban').addClass('fa-filter');
+        }
     };
 };
 
@@ -192,8 +227,6 @@ function initMap() {
     });
 
     googleMap.infoWindow = new google.maps.InfoWindow({maxWidth: 300});
-    googleMap.bounds = new google.maps.LatLngBounds();
-
     google.maps.event.addListener(googleMap.infoWindow, 'domready', function() {
 
       // Reference to the DIV that wraps the bottom of infowindow

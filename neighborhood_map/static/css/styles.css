@@ -66,6 +66,11 @@ body {
     background: rgba(255, 255, 255, 0.2);
 }
 
+.selected {
+    background-color: #555;
+    font-weight: bold;
+    color: #fff;
+}
 .sidebar__list__waiting > img {
     padding-top: 50px;
     padding-left: 100px;
@@ -111,6 +116,57 @@ body {
 
 #google-map {
     flex: 1 1 auto;
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+}
+
+
+.gm-style-iw {
+	width: 300px !important;
+	top: 15px !important;
+	left: 30px !important;
+	background-color: #373a3c;
+	box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+	border: 1px solid rgba(42, 44, 45, 0.6);
+	border-radius: 10px;
+}
+
+.iw__container {
+	margin-bottom: 10px;
+}
+
+.iw__title {
+	font-size: 22px;
+	font-weight: 400;
+	padding: 10px;
+	background-color: #292b2c;
+	color: #eee;
+	margin: 0;
+	border-radius: 2px 2px 0 0;
+}
+
+.iw__content {
+	font-size: 13px;
+	line-height: 18px;
+    color: #ccc;
+	margin-right: 1px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.iw__img__container {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+.iw__content > p {
+    margin: 0 10px 5px 10px;
+}
+
+.iw__content a {
+    color: #ccc;
 }
 
 @media screen and (max-width: 575px) {

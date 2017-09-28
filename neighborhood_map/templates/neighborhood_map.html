@@ -37,7 +37,7 @@
 
         <div class="sidebar__list__container">
             <ul class="sidebar__list" data-bind="foreach: venues">
-                <li class="sidebar__list__item animated fadeInRight py-2">
+                <li class="sidebar__list__item animated fadeInRight py-2" data-bind="css: {selected: $data == $root.chosenVenue() }, click: $root.chooseVenue">
                     <p class="my-0" data-bind="text: formattedName"></p>
                 </li>
             </ul>
@@ -93,8 +93,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <!-- Knockout.js JavaScript -->
 
-    <script src="{{url_for('static', filename='js/ui.js')}}"></script>
+    <script src="{{url_for('static', filename='js/google_map_style.js')}}"></script>
     <script src="{{url_for('static', filename='js/app.js')}}"></script>
+    <script src="{{url_for('static', filename='js/ui.js')}}"></script>
 
     <!-- Google Maps API JavaScript -->
     <script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAP_API_KEY}}&v=3&callback=initMap" async defer></script>

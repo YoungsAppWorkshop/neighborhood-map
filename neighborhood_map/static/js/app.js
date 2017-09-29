@@ -1,7 +1,16 @@
+const DEFAULT_DATA = {
+    city: 'Busan',
+    country: 'South Korea',
+    location: {
+        lat: 35.1795543,
+        lng: 129.0756416
+    },
+    section: 'TopPicks'
+};
+
 let googleMap = {
     // Initialize variables for Google Maps API
     map: null,
-    markers: new Map(),
     center: null,
     infoWindow: null,
     bounds: null,
@@ -108,13 +117,13 @@ const Venue = function(venueItem) {
  * ViewModel - Knockout.js ViewModel
  *
  */
-let ViewModel = function() {
+let ViewModel = function(data) {
     const self = this;
 
-    self.city = ko.observable('Busan');
-    self.country = ko.observable('South Korea');
+    self.city = ko.observable(data.city);
+    self.country = ko.observable(data.country);
     self.availableSections = ['TopPicks', 'Food', 'Drinks', 'Coffee', 'Shops', 'Arts', 'Outdoors', 'Sights', 'Trending', 'Specials'];
-    self.section = ko.observable(self.availableSections[0]);
+    self.section = ko.observable(data.section);
     self.filter = ko.observable('');
     self.venues = ko.observableArray([]);
     self.chosenVenue = ko.observable();
@@ -145,7 +154,7 @@ let ViewModel = function() {
                 googleMap.map.setCenter(response.results.location);
                 googleMap.bounds = new google.maps.LatLngBounds();
                 const venueItems = response.results.items;
-                console.log(venueItems);
+                // console.log(venueItems);
                 if (venueItems.length === 0) {
                     self.displayInfo('No result', "Couldn't find " + self.section() + " in this location.");
                 } else {
@@ -158,6 +167,8 @@ let ViewModel = function() {
                     googleMap.map.fitBounds(googleMap.bounds);
                     self.isWaiting(false);
                 }
+                let data = {city: self.city(), country: self.country(), location: response.results.location, section: self.section()};
+                localStorage.setItem('neighborhood_map_data', JSON.stringify(data));
             } else if (response.meta.status === 'WRONG_ADDRESS') {
                 self.displayInfo('Location Error', "Couldn't find the location. Please specify City and Country.");
             } else {
@@ -244,16 +255,21 @@ let ViewModel = function() {
 };
 
 
+
+
+let data = (JSON.parse(localStorage.getItem('neighborhood_map_data')) || DEFAULT_DATA);
+let viewModel = new ViewModel(data);
+ko.applyBindings(viewModel);
+viewModel.searchVenues();
+
+
 //
 // Initialize Google Maps API
 //
 function initMap() {
     // Constructor creates a new map - only center and zoom are required.
     googleMap.map = new google.maps.Map(document.getElementById('google-map'), {
-        center: {
-            lat: 40.7413549,
-            lng: -73.9980244
-        },
+        center: data.location,
         zoom: 14,
         styles: googleMap.styles,
         mapTypeControl: false
@@ -273,9 +289,4 @@ function initMap() {
       iwCloseBtn.css({opacity: '1', border: '7px solid #494f53', 'border-radius': '13px', 'box-shadow': '0 0 5px #373a3c'});
     });
 
-
 }
-
-
-let viewModel = new ViewModel();
-ko.applyBindings(viewModel);

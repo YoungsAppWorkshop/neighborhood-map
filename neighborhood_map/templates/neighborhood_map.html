@@ -37,7 +37,7 @@
 
         <div class="sidebar__list__container">
             <ul class="sidebar__list" data-bind="foreach: filteredVenues">
-                <li class="sidebar__list__item animated fadeInRight py-2" data-bind="css: {selected: $data == $root.chosenVenue() }, click: $root.chooseVenue">
+                <li class="sidebar__list__item animated fadeInRight py-2" data-bind="css: {selected: $data == $root.chosenVenue() }, event: { mouseover: $root.focusMarker, mouseout: $root.unfocusMarker }, click: $root.chooseVenue, attr: { 'data-venue-id': id }">
                     <p class="my-0" data-bind="text: formattedName"></p>
                 </li>
             </ul>

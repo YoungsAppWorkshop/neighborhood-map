@@ -16,13 +16,23 @@ let googleMap = {
                 lng: venue.lng
             },
             title: venue.name,
+            icon: '/static/img/icon_default.png',
             animation: google.maps.Animation.DROP
         });
         this.bounds.extend(marker.position);
 
+        marker.addListener('mouseover', function() {
+            $('li[data-venue-id="' + venue.id + '"]').addClass('focused');
+            viewModel.focusMarker(venue);
+        });
+
+        marker.addListener('mouseout', function() {
+            $('li[data-venue-id="' + venue.id + '"]').removeClass('focused');
+            viewModel.unfocusMarker(venue);
+        });
+
         marker.addListener('click', function() {
-            googleMap.populateInfoWindow(this, venue, googleMap.infoWindow);
-            viewModel.chosenVenue(venue)
+            viewModel.chooseVenue(venue);
         });
 
         return marker;
@@ -48,6 +58,7 @@ let googleMap = {
             infowindow.open(googleMap.map, marker);
             // Make sure the marker property is cleared if the infowindow is closed.
             infowindow.addListener('closeclick', function() {
+                marker.setIcon('/static/img/icon_default.png');
                 infowindow.marker = null;
                 viewModel.chosenVenue(null);
             });
@@ -72,6 +83,7 @@ const Venue = function(venueItem) {
     self.lng = venueItem.venue.location.lng;
     self.phone = venueItem.venue.contact.formattedPhone;
     self.url = venueItem.venue.url;
+    self.id = venueItem.venue.id;
     if (venueItem.venue.featuredPhotos) {
         self.photo = venueItem.venue.featuredPhotos.items[0].prefix + '300x300';
         self.photo += venueItem.venue.featuredPhotos.items[0].suffix;
@@ -133,6 +145,7 @@ let ViewModel = function() {
                 googleMap.map.setCenter(response.results.location);
                 googleMap.bounds = new google.maps.LatLngBounds();
                 const venueItems = response.results.items;
+                console.log(venueItems);
                 if (venueItems.length === 0) {
                     self.displayInfo('No result', "Couldn't find " + self.section() + " in this location.");
                 } else {
@@ -158,6 +171,8 @@ let ViewModel = function() {
 
     self.chooseVenue = function(venue) {
         self.chosenVenue(venue);
+        viewModel.unfocusMarkers();
+        venue.marker.setIcon('/static/img/icon_focus.png');
         googleMap.populateInfoWindow(venue.marker, venue, googleMap.infoWindow);
     };
 
@@ -167,6 +182,18 @@ let ViewModel = function() {
             venue.marker = null;
         });
         self.venues([]);
+    };
+
+    self.toggleFilter = function() {
+        self.isFiltered(!self.isFiltered());
+        if (self.isFiltered()) {
+            $('#sidebar-filter-btn').removeClass('btn-success').addClass('btn-danger');
+            $('#sidebar-filter-btn').find('i').removeClass('fa-filter').addClass('fa-ban');
+        } else {
+            self.filter('');
+            $('#sidebar-filter-btn').removeClass('btn-danger').addClass('btn-success');
+            $('#sidebar-filter-btn').find('i').removeClass('fa-ban').addClass('fa-filter');
+        }
     };
 
     self.filteredVenues = ko.computed(function() {
@@ -190,6 +217,22 @@ let ViewModel = function() {
 
     });
 
+    self.unfocusMarkers = function() {
+        self.venues().forEach(function(venue){
+            venue.marker.setIcon('/static/img/icon_default.png');
+        });
+    };
+
+    self.focusMarker = function(venue) {
+        venue.marker.setIcon('/static/img/icon_focus.png');
+    };
+
+    self.unfocusMarker = function(venue) {
+        if (venue != self.chosenVenue()) {
+            venue.marker.setIcon('/static/img/icon_default.png');
+        }
+    };
+
     self.displayInfo = function(title, message) {
         self.infoTitle(title);
         self.infoMessage(message);
@@ -197,17 +240,7 @@ let ViewModel = function() {
         self.isInfo(true);
     };
 
-    self.toggleFilter = function() {
-        self.isFiltered(!self.isFiltered());
-        if (self.isFiltered()) {
-            $('#sidebar-filter-btn').removeClass('btn-success').addClass('btn-danger');
-            $('#sidebar-filter-btn').find('i').removeClass('fa-filter').addClass('fa-ban');
-        } else {
-            self.filter('');
-            $('#sidebar-filter-btn').removeClass('btn-danger').addClass('btn-success');
-            $('#sidebar-filter-btn').find('i').removeClass('fa-ban').addClass('fa-filter');
-        }
-    };
+
 };
 
 

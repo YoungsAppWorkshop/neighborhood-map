@@ -1,3 +1,6 @@
+/*
+* General
+*/
 html,
 body,
 main {
@@ -126,6 +129,24 @@ body {
             box-sizing: content-box;
 }
 
+@media screen and (max-width: 575px) {
+    #content-wrapper.toggled {
+        -ms-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    #content-wrapper {
+        margin-left: 0;
+        -ms-transform: translateX(270px);
+        -webkit-transform: translateX(270px);
+        transform: translateX(270px);
+    }
+}
+
+/*
+* InfoWindow in Google Map
+*/
 .gm-style-iw {
 	width: 300px !important;
 	top: 15px !important;
@@ -172,18 +193,4 @@ body {
 
 .iw__content a {
     color: #ccc;
-}
-
-@media screen and (max-width: 575px) {
-    #content-wrapper.toggled {
-        -ms-transform: translateX(0);
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-    }
-    #content-wrapper {
-        margin-left: 0;
-        -ms-transform: translateX(270px);
-        -webkit-transform: translateX(270px);
-        transform: translateX(270px);
-    }
 }

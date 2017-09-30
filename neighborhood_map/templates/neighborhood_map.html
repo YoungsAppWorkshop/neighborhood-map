@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <aside id="sidebar" class="sidebar">
+    <aside id="sidebar" class="sidebar sidebar--toggled">
         <div class="sidebar__brand">
             <h1>Neighborhood Map</h1>
         </div>
@@ -59,7 +59,7 @@
         </footer>
     </aside>
 
-    <main id="content-wrapper" class="container-fluid px-0">
+    <main id="content-wrapper" class="container-fluid px-0 toggled">
 
         <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse header">
 
@@ -67,7 +67,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <button id="sidebar-toggle-btn" class="btn btn-danger my-2 my-sm-0"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+            <button id="sidebar-toggle-btn" class="btn btn-danger my-2 my-sm-0"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 
             <div class="collapse navbar-collapse" id="collapse-menu">
                 <form class="form-inline my-2 my-lg-0 ml-auto">
@@ -93,9 +93,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <!-- Knockout.js JavaScript -->
 
+    <script src="{{url_for('static', filename='js/ui.js')}}"></script>
     <script src="{{url_for('static', filename='js/google_map_style.js')}}"></script>
     <script src="{{url_for('static', filename='js/app.js')}}"></script>
-    <script src="{{url_for('static', filename='js/ui.js')}}"></script>
 
     <!-- Google Maps API JavaScript -->
     <script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAP_API_KEY}}&v=3&callback=initMap" async defer></script>

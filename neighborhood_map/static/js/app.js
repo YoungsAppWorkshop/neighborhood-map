@@ -289,4 +289,13 @@ function initMap() {
       iwCloseBtn.css({opacity: '1', border: '7px solid #494f53', 'border-radius': '13px', 'box-shadow': '0 0 5px #373a3c'});
     });
 
+    google.maps.event.addDomListenerOnce(googleMap.map, 'idle', function () {
+	    google.maps.event.addDomListener(window, 'resize', function () {
+	        googleMap.map.fitBounds(googleMap.bounds);
+	    });
+        if (window.innerWidth > 991) {
+            toggleSidebar();
+        }
+	});
+
 }

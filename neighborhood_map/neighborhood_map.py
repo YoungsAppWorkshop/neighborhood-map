@@ -53,13 +53,18 @@ def get_venues_list():
         'address': address,
         'key': GOOGLE_MAP_API_KEY
     }
-    answer = requests.get(url, params=params)
-    data = answer.json()
-    # If there's no result from Google Maps API, send error response
+    try:
+        answer = requests.get(url, params=params)
+        data = answer.json()
+    except Exception:
+        # If Google Maps API doesn't respond, notify client
+        response = create_response('G_MAPS_ERROR', "Couldn't get lat&lng", 200)
+        return response
+    # If Google Maps API returns 'ZERO_RESULTS', notify client
     if data.get('status') == 'ZERO_RESULTS':
         response = create_response('WRONG_ADDRESS', 'No such address', 200)
         return response
-    # If error occurs while getting lat/lng, send error response
+    # If Google Maps API returns other error response, notify client
     if data.get('status') != 'OK':
         response = create_response('G_MAPS_ERROR', "Couldn't get lat&lng", 200)
         return response
@@ -77,9 +82,14 @@ def get_venues_list():
         'section': section,
         'venuePhotos': 1
     }
-    answer = requests.get(url, params=params)
-    data = answer.json()
-    # If error occurs while getting venues data, send error response
+    try:
+        answer = requests.get(url, params=params)
+        data = answer.json()
+    except Exception:
+        # If Foursquare API doesn't respond, notify client
+        response = create_response('FOURSQUARE_ERROR', 'Error occured while getting venues data from Foursquare', 200)  # noqa
+        return response
+    # If Foursquare API returns error response, notify client
     if data.get('meta').get('code') != 200:
         response = create_response('FOURSQUARE_ERROR', 'Error occured while getting venues data from Foursquare', 200)  # noqa
         return response
@@ -93,7 +103,7 @@ def get_venues_list():
 
 
 def create_response(status, message, code, results={}):
-    """Create customized response object
+    """Create customized JSON response object to send client
     """
     message = {
         'meta': {

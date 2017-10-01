@@ -47,7 +47,7 @@
                 <img src="{{url_for('static', filename='img/loading.gif')}}" alt="Loading Data...">
             </div>
 
-            <div class="sidebar__list__info animated fadeIn" data-bind="visible: $root.isInfo">
+            <div class="sidebar__list__info animated fadeIn" data-bind="visible: $root.showInfo">
                 <h5 data-bind="text: $root.infoTitle"></h5>
                 <p data-bind="text: $root.infoMessage" class="mx-3"></p>
             </div>
@@ -98,7 +98,7 @@
     <script src="{{url_for('static', filename='js/app.js')}}"></script>
 
     <!-- Google Maps API JavaScript -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAP_API_KEY}}&v=3&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAP_API_KEY}}&v=3&callback=initMap" onerror="mapError()" async defer></script>
     <!-- Google Maps API JavaScript -->
 
 </body>

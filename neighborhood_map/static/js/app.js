@@ -217,7 +217,7 @@ let ViewModel = function(data) {
                 localStorage.setItem('neighborhood_map_data', JSON.stringify(data));
 
             } else if (response.meta.status === 'WRONG_ADDRESS') {
-                // If server returns 'Location Error' response, notify user
+                // If server returns 'WRONG_ADDRESS' response, notify user
                 self.displayInfo('Location Error', "Couldn't find the location. Please specify City and Country.");
 
             } else {
@@ -395,4 +395,12 @@ function initMap() {
         }
 	});
 
+}
+
+/**
+* Google Map API on error callback function
+*/
+function mapError() {
+    let mapElem = document.getElementById('google-map');
+    mapElem.innerHTML = '<h5 class="p-3">Failed to load Google Map. Please check your internet connection.</h5>';
 }

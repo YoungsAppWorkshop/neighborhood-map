@@ -8,7 +8,8 @@ Clone the github repository and install flask app as follow.
 ```
 git clone https://github.com/YoungsAppWorkshop/neighborhood-map
 cd neighborhood-map
-pip install .
+sudo pip install -r requirements.txt
+sudo pip install .
 ```
 
 Since the neighborhood map is built upon [Google Maps](https://developers.google.com/maps/) and [Foursquare](https://developer.foursquare.com/) APIs, it needs credentials of the APIs to work properly. The app credentials should be specified in `api_secrets.json` file included in the `/neighborhood-map` directory.

@@ -45,6 +45,7 @@ Below are the origins of outer source codes and images.
 - [TodoMVC Knockout.js example](http://todomvc.com/examples/knockoutjs/)
 - [Customizing the Google Maps Infowindow](https://codepen.io/Marnoto/pen/xboPmG)
 - [Resizing Google Maps](http://jsfiddle.net/n5c01zw5/)
+- [Animate.css](https://daneden.github.io/animate.css/)
 - Google Maps Marker icons: [Green](https://pixabay.com/en/poi-location-pin-marker-position-304466/) / [Red](https://pixabay.com/en/location-poi-pin-marker-position-304467/)
 - [No Image Icon](https://www.iconfinder.com/icons/103591/cancel_image_icon#size=128)
 - [loading.gif](https://preloaders.net/)

@@ -4,22 +4,24 @@ import requests
 from flask import (Flask, request, url_for, abort, render_template,
                    make_response, jsonify)
 
-GOOGLE_MAP_API_KEY = json.loads(open('api_secrets.json', 'r').read())['googlemap']['api_key']  # noqa
-FOURSQUARE_CLIENT_ID = json.loads(open('api_secrets.json', 'r').read())['foursquare']['app_id']  # noqa
-FOURSQUARE_CLIENT_SECRET = json.loads(open('api_secrets.json', 'r').read())['foursquare']['app_secret']  # noqa
-
 
 # Create the application instance
 app = Flask(__name__)
 
-# Load default config from this file
-app.config.from_object(__name__)
-app.config.update(dict(
-    SECRET_KEY='development key'
-))
+# To load configuration variables from instance folder, uncomment the below
+# app = Flask(__name__, instance_relative_config=True)
 
-# And override config from an environment variable
-app.config.from_envvar('NEIGHBORHOOD_MAP_SETTINGS', silent=True)
+# Load default config
+app.config.from_object('config')
+
+# To load configuration variables from instance folder, uncomment the below
+# app.config.from_pyfile('config.py')
+
+# Load API secrets from API_SECRET_FILE
+API_SECRET_FILE = app.config['API_SECRET_FILE']
+GOOGLE_MAP_API_KEY = json.loads(open(API_SECRET_FILE, 'r').read())['googlemap']['api_key']  # noqa
+FOURSQUARE_CLIENT_ID = json.loads(open(API_SECRET_FILE, 'r').read())['foursquare']['app_id']  # noqa
+FOURSQUARE_CLIENT_SECRET = json.loads(open(API_SECRET_FILE, 'r').read())['foursquare']['app_secret']  # noqa
 
 
 @app.route('/')

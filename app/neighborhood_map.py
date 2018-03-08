@@ -6,16 +6,16 @@ from flask import (Flask, request, url_for, abort, render_template,
 
 
 # Create the application instance
-app = Flask(__name__)
+# app = Flask(__name__)
 
 # To load configuration variables from instance folder, uncomment the below
-# app = Flask(__name__, instance_relative_config=True)
+app = Flask(__name__, instance_relative_config=True)
 
 # Load default config
 app.config.from_object('config')
 
 # To load configuration variables from instance folder, uncomment the below
-# app.config.from_pyfile('config.py')
+app.config.from_pyfile('config.py')
 
 # Load API secrets from API_SECRET_FILE
 API_SECRET_FILE = app.config['API_SECRET_FILE']

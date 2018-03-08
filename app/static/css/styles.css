@@ -194,3 +194,17 @@ body {
 .iw__content a {
     color: #ccc;
 }
+
+/*
+* 404 Not Found Page
+*/
+.page_not_found_img {
+  width: 100%;
+}
+
+.page_not_found_link {
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+}

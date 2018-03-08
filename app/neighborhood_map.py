@@ -104,6 +104,11 @@ def get_venues_list():
     return response
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 def create_response(status, message, code, results={}):
     """Create customized JSON response object to send client
     """

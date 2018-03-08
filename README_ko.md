@@ -8,36 +8,36 @@ GitHub 저장소를 복제(Clone)하고 아래와 같이 플라스크(flask) 앱
 ```
 git clone https://github.com/YoungsAppWorkshop/neighborhood-map
 cd neighborhood-map
-sudo pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
-동네지도(Neighborhood Map) 앱은 [구글 지도](https://developers.google.com/maps/) 및 [Foursquare](https://developer.foursquare.com/) API를 기반으로 제작되었기 때문에, 로컬환경에서 설치하고 테스트하기 위해서는 각 API 서비스를 등록하고 `/neighborhood-map` 디렉토리에 있는 `api_secrets.json` 파일에 관련 정보를 저장해야 정상적으로 동작합니다.
+동네지도(Neighborhood Map) 앱은 [구글 지도](https://developers.google.com/maps/) 및 [Foursquare](https://developer.foursquare.com/) API를 기반으로 제작되었기 때문에, 로컬환경에서 설치하고 테스트하기 위해서는 각 API 서비스를 등록하고 `api_secrets.json` 파일에 관련 정보를 저장해야 정상적으로 동작합니다.
 
 ## 어플리케이션 시작
 API 관련정보를 `api_secrets.json` 파일에 저장한 후, 아래와 같이 어플리케이션을 시작합니다:
 
 ```
-export FLASK_APP=neighborhood_map
-flask run --host=0.0.0.0
+python3 run.py
 ```
 
 ## 어플리케이션 구조
-```
+```bash
 /neighborhood-map
-    /neighborhood_map
+    /app
         /static
             /js
-                app.js
+                app.js              # 동네지도앱 자바스크립트 애플리케이션
             /css
             /img
         /templates
             neighborhood_map.html
         __init__.py
-        neighborhood_map.py
-    setup.py
-    api_secrets.json
-    MANIFEST.in
-    README.md
+        neighborhood_map.py         # 동네지도앱 플라스크 애플리케이션
+    api_secrets.json                # API 시크릿 정보
+    config.py                       # 플라스크 설정 파일
+    README_ko.md
+    requirements.txt
+    run.py                          # 앱 시작하기
 ```
 
 ## 참고자료
@@ -49,6 +49,8 @@ flask run --host=0.0.0.0
 - Google Maps Marker icons: [Green](https://pixabay.com/en/poi-location-pin-marker-position-304466/) / [Red](https://pixabay.com/en/location-poi-pin-marker-position-304467/)
 - [No Image Icon](https://www.iconfinder.com/icons/103591/cancel_image_icon#size=128)
 - [loading.gif](https://preloaders.net/)
+- [404 Page Not Found Image](https://pixabay.com/en/not-found-website-error-page-404-1770320/)
+
 
 ## 저작권
-[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+[MIT 라이센스](/LICENSE)

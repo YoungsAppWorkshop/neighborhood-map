@@ -5,41 +5,41 @@ The neighborhood map is a single page application featuring a map of neighborhoo
 - 한글 리드미(README Korean) 파일: [README_ko.md](https://github.com/YoungsAppWorkshop/neighborhood-map/blob/master/README_ko.md)
 
 ## Installation
-Clone the github repository and install flask app as follow.
+Clone the github repository and install dependencies as follow.
 
 ```
 git clone https://github.com/YoungsAppWorkshop/neighborhood-map
 cd neighborhood-map
-sudo pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
-Since the neighborhood map is built upon [Google Maps](https://developers.google.com/maps/) and [Foursquare](https://developer.foursquare.com/) APIs, it needs credentials of the APIs to work properly. The app credentials should be specified in `api_secrets.json` file included in the `/neighborhood-map` directory.
+Since the neighborhood map is built upon [Google Maps](https://developers.google.com/maps/) and [Foursquare](https://developer.foursquare.com/) APIs, it needs credentials of the APIs to work properly. The app credentials should be specified in `api_secrets.json` file.
 
 ## Starting the app
 After including the API credentials in `api_secrets.json` file, the app can be started as:
 
 ```
-export FLASK_APP=neighborhood_map
-flask run --host=0.0.0.0
+python3 run.py
 ```
 
 ## Structure of the app
-```
+```bash
 /neighborhood-map
-    /neighborhood_map
+    /app
         /static
             /js
-                app.js
+                app.js              # JavaScript Application
             /css
             /img
         /templates
             neighborhood_map.html
         __init__.py
-        neighborhood_map.py
-    setup.py
-    api_secrets.json
-    MANIFEST.in
+        neighborhood_map.py         # Neighborhood Flask application
+    api_secrets.json                # API secrets
+    config.py                       # Configurations
     README.md
+    requirements.txt
+    run.py                          # Python3 script to run the app
 ```
 
 ## Attributions for outer sources
@@ -51,7 +51,7 @@ Below are the origins of outer source codes and images.
 - Google Maps Marker icons: [Green](https://pixabay.com/en/poi-location-pin-marker-position-304466/) / [Red](https://pixabay.com/en/location-poi-pin-marker-position-304467/)
 - [No Image Icon](https://www.iconfinder.com/icons/103591/cancel_image_icon#size=128)
 - [loading.gif](https://preloaders.net/)
+- [404 Page Not Found Image](https://pixabay.com/en/not-found-website-error-page-404-1770320/)
 
 ## License
-This is a public domain work, dedicated using
-[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+[MIT licensed](/LICENSE)

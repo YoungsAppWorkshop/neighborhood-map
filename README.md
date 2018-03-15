@@ -1,8 +1,11 @@
 # Project: Neighborhood Map
 
-The neighborhood map is a single page application featuring a map of neighborhood you would like to visit. By default, it shows Busan, South Korea where I was born and grow, but you can also explore wherever you want thanks to [Google Maps](https://developers.google.com/maps/) and [Foursquare](https://developer.foursquare.com/) APIs.
+The neighborhood map is a single page application featuring a map of neighborhood you would like to visit. By default, it shows Busan, South Korea where I was born and grow, but you can also explore wherever you want thanks to [Google Maps](https://developers.google.com/maps/) and [Foursquare](https://developer.foursquare.com/) APIs. This project is one of assignments for the [Udacity's Full Stack Web Developer Nanodegree program](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004).
 
 - 한글 리드미(README Korean) 파일: [README_ko.md](https://github.com/YoungsAppWorkshop/neighborhood-map/blob/master/README_ko.md)
+
+## Demo
+Demo Website URL: https://neighborhoodmap.youngsappworkshop.com
 
 ## Installation
 Clone the github repository and install dependencies as follow.
@@ -42,7 +45,7 @@ python3 run.py
     run.py                          # Python3 script to run the app
 ```
 
-## Attributions for outer sources
+## Attributions
 Below are the origins of outer source codes and images.
 - [TodoMVC Knockout.js example](http://todomvc.com/examples/knockoutjs/)
 - [Customizing the Google Maps Infowindow](https://codepen.io/Marnoto/pen/xboPmG)

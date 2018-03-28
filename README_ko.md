@@ -2,11 +2,13 @@
 
 동네지도(Neighborhood Map) 앱은 세계 여러 나라의 도시들에서 사람들이 자주 방문하는 상점, 커피숍, 유명 관광지 등을 지도에 표시하여 주는 SPA(Single Page Application)입니다. 기본적으로 대한민국의 부산 지역을 보여주며, 검색을 통해 다른 도시들의 자주 찾는 장소를 확인할 수 있습니다. 이 앱은 [Udacity의 풀스택 웹개발자 과정](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004)의 일환으로 [구글 지도](https://developers.google.com/maps/)와  [Foursquare](https://developer.foursquare.com/)의 위치기반서비스 API를 활용하여 제작되었습니다.
 
+- 영문 리드미(English README) 파일: [README.md](/README.md)
+
 ## 데모
 데모 웹사이트 URL: https://neighborhoodmap.youngsappworkshop.com
 
 ## 설치 방법
-GitHub 저장소를 복제(Clone)하고 아래와 같이 플라스크(flask) 앱을 설치합니다.
+GitHub 저장소를 복제(Clone)하고 아래와 같이 필요한 패키지를 설치합니다.
 
 ```
 git clone https://github.com/YoungsAppWorkshop/neighborhood-map

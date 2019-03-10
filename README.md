@@ -4,8 +4,10 @@ The neighborhood map is a single page application featuring a map of neighborhoo
 
 - 한글 리드미(README Korean) 파일: [README_ko.md](https://github.com/YoungsAppWorkshop/neighborhood-map/blob/master/README_ko.md)
 
-## Demo
-Demo Website URL: https://neighborhoodmap.youngsappworkshop.com
+## Screenshots
+| Venues List   | Venue Detail |
+|------------------|-----------------|
+|![Screenshot_01](https://github.com/YoungsAppWorkshop/neighborhood-map/blob/master/ScreenShot01.png?raw=true)| ![Screenshot_02](https://github.com/YoungsAppWorkshop/neighborhood-map/blob/master/ScreenShot02.png?raw=true) |
 
 ## Installation
 Clone the github repository and install dependencies as follow.

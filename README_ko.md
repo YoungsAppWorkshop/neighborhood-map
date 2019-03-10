@@ -4,8 +4,10 @@
 
 - 영문 리드미(English README) 파일: [README.md](/README.md)
 
-## 데모
-데모 웹사이트 URL: https://neighborhoodmap.youngsappworkshop.com
+## 스크린샷
+| 장소 리스트    | 장소 상세 정보 |
+|------------------|-----------------|
+|![Screenshot_01](https://github.com/YoungsAppWorkshop/neighborhood-map/blob/master/ScreenShot01.png?raw=true)| ![Screenshot_02](https://github.com/YoungsAppWorkshop/neighborhood-map/blob/master/ScreenShot02.png?raw=true) |
 
 ## 설치 방법
 GitHub 저장소를 복제(Clone)하고 아래와 같이 필요한 패키지를 설치합니다.
